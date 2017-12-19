@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xintai.changshun.dao.UserDao">
+  <resultMap id="BaseResultMap" type="com.xintai.changshun.bean.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_id" jdbcType="INTEGER" property="role_id" />
+    <result column="phone" jdbcType="INTEGER" property="phone" />
+    <result column="qq" jdbcType="INTEGER" property="qq" />
+    <result column="enable_flag" jdbcType="VARCHAR" property="enable_flag" />
+    <result column="update_time" jdbcType="DATE" property="update_time" />
+    <result column="created_time" jdbcType="DATE" property="created_time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, password, role_id, phone, qq, enable_flag, update_time, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cs_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectUserByName" parameterType="com.xintai.changshun.bean.User" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cs_user
+    where username = #{username,jdbcType=VARCHAR}
+   	  and password = #{password,jdbcType=VARCHAR}
+   	  and enable_flag = '1'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cs_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xintai.changshun.bean.User" keyProperty="id">
+    insert into cs_user (username, password, role_id, 
+      phone, qq, enable_flag, 
+      update_time, created_time)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{role_id,jdbcType=INTEGER}, 
+      #{phone,jdbcType=INTEGER}, #{qq,jdbcType=INTEGER}, #{enable_flag,jdbcType=VARCHAR}, 
+      #{update_time,jdbcType=DATE}, #{created_time,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xintai.changshun.bean.User">
+    insert into cs_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="role_id != null">
+        role_id,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="qq != null">
+        qq,
+      </if>
+      <if test="enable_flag != null">
+        enable_flag,
+      </if>
+      <if test="update_time != null">
+        update_time,
+      </if>
+      <if test="created_time != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="role_id != null">
+        #{role_id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="enable_flag != null">
+        #{enable_flag,jdbcType=VARCHAR},
+      </if>
+      <if test="update_time != null">
+        #{update_time,jdbcType=DATE},
+      </if>
+      <if test="created_time != null">
+        #{created_time,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cs_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.role_id != null">
+        role_id = #{record.role_id,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=INTEGER},
+      </if>
+      <if test="record.qq != null">
+        qq = #{record.qq,jdbcType=INTEGER},
+      </if>
+      <if test="record.enable_flag != null">
+        enable_flag = #{record.enable_flag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.update_time != null">
+        update_time = #{record.update_time,jdbcType=DATE},
+      </if>
+      <if test="record.created_time != null">
+        created_time = #{record.created_time,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cs_user
+    set id = #{record.id,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      role_id = #{record.role_id,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=INTEGER},
+      qq = #{record.qq,jdbcType=INTEGER},
+      enable_flag = #{record.enable_flag,jdbcType=VARCHAR},
+      update_time = #{record.update_time,jdbcType=DATE},
+      created_time = #{record.created_time,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xintai.changshun.bean.User">
+    update cs_user
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="role_id != null">
+        role_id = #{role_id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="enable_flag != null">
+        enable_flag = #{enable_flag,jdbcType=VARCHAR},
+      </if>
+      <if test="update_time != null">
+        update_time = #{update_time,jdbcType=DATE},
+      </if>
+      <if test="created_time != null">
+        created_time = #{created_time,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xintai.changshun.bean.User">
+    update cs_user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      role_id = #{role_id,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=INTEGER},
+      enable_flag = #{enable_flag,jdbcType=VARCHAR},
+      update_time = #{update_time,jdbcType=DATE},
+      created_time = #{created_time,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
