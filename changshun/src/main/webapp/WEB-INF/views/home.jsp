@@ -118,10 +118,11 @@
             <!-- <div class="am-topbar-right">
                 <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
             </div> -->
-
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+			<form action="login/go_login.action" method="post" id="goForm">
+				<div class="am-topbar-right">
+	                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm" onclick="$('#goForm').submit()" ><span class="am-icon-user"></span> 登录</button>
+	            </div>
+			</form>
         </div>
     </div>
 </header>

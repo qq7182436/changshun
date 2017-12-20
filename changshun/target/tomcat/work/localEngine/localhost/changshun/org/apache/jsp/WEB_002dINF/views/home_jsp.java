@@ -202,10 +202,11 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <!-- <div class=\"am-topbar-right\">\r\n");
       out.write("                <button class=\"am-btn am-btn-default am-topbar-btn am-btn-sm\"><span class=\"am-icon-pencil\"></span>注册</button>\r\n");
       out.write("            </div> -->\r\n");
-      out.write("\r\n");
-      out.write("            <div class=\"am-topbar-right\">\r\n");
-      out.write("                <button class=\"am-btn am-btn-danger am-topbar-btn am-btn-sm\"><span class=\"am-icon-user\"></span> 登录</button>\r\n");
-      out.write("            </div>\r\n");
+      out.write("\t\t\t<form action=\"login/go_login.action\" method=\"post\" id=\"goForm\">\r\n");
+      out.write("\t\t\t\t<div class=\"am-topbar-right\">\r\n");
+      out.write("\t                <button class=\"am-btn am-btn-danger am-topbar-btn am-btn-sm\" onclick=\"$('#goForm').submit()\" ><span class=\"am-icon-user\"></span> 登录</button>\r\n");
+      out.write("\t            </div>\r\n");
+      out.write("\t\t\t</form>\r\n");
       out.write("        </div>\r\n");
       out.write("    </div>\r\n");
       out.write("</header>\r\n");

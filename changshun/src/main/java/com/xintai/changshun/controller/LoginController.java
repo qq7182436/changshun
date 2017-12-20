@@ -45,20 +45,16 @@ public class LoginController extends BaseController{
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/go_login",method=RequestMethod.GET)
+	@RequestMapping(value="login/go_login",method=RequestMethod.POST)
 	public ModelAndView go_login(HttpServletRequest request) {
-		HttpSession session = request.getSession();
 		ModelAndView modelAndView = new ModelAndView();
-		if (null != session.getAttribute("userId")) {
-			modelAndView.setViewName("manager/login");
-			modelAndView.addObject(advertisementDto);
-			return modelAndView;
-		}
-		modelAndView.setViewName("manager/login");
-		advertisementDto.setId(1);
-		advertisementDto.setTitile("一个大胆的想法");
-		advertisementDto.setPhoto("/img/ad/ad.jpg");
-		modelAndView.addObject(advertisementDto);
+		modelAndView.setViewName("manager/main");
+		return modelAndView;
+	}
+	@RequestMapping(value="login/go_main2",method=RequestMethod.GET)
+	public ModelAndView go_main2(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("manager/main2");
 		return modelAndView;
 	}
 	
